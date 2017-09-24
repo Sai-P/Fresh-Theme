@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_material_dark">#ff000000</color>   <!--OG:@color/material_grey_900-->
+</resources>

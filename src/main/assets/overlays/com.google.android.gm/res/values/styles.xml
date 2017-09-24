@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="NotificationPrimaryText">
+        <item name="android:textColor">#ffffffff</item>
+    </style>
+    <style name="NotificationSecondaryText">
+        <item name="android:textColor">#ffb2b2b2</item>
+    </style>
+
+</resources>
