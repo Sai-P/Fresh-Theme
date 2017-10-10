@@ -12,20 +12,20 @@
     <style name="Base.Widget.AppCompat.Light.PopupMenu" parent="@*android:style/Widget.Material.PopupMenu" />
 
     <style name="Platform.AppCompat" parent="@*android:style/Theme.Material">
-        <item name="android:colorBackground">@android:color/black</item>
-        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:colorBackground">@*android:color/black</item>
+        <item name="android:windowBackground">@*android:color/black</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
     </style>
     <style name="Platform.AppCompat.Light" parent="@*android:style/Theme.Material">
-        <item name="android:colorBackground">@android:color/black</item>
-        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:colorBackground">@*android:color/black</item>
+        <item name="android:windowBackground">@*android:color/black</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
     </style>
         <style name="Platform.V21.AppCompat.Light" parent="@*android:style/Theme.Material.NoActionBar">
-        <item name="android:colorBackground">@android:color/black</item>
-        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:colorBackground">@*android:color/black</item>
+        <item name="android:windowBackground">@*android:color/black</item>
         <item name="android:textColorHintInverse">#ffb2b2b2</item>
         <item name="android:textColorHint">#ffb2b2b2</item>
     </style>

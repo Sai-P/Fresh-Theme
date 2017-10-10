@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Primary Colour (Notification Text) Edits-->
+    <color name="actionbar_background_color">#ff366dfc</color>   <!--OG:@color/dialer_theme_color-->
+    <color name="statusbar_background_color">#ff366dfc</color>   <!--OG:@color/dialer_theme_color-->
+    <!--The Rest-->
     <color name="background_dialer_light">#ff000000</color>    <!--OG:#fffafafa-->
     <color name="background_dialer_results">#ff000000</color>    <!--OG:#fff9f9f9-->
     <color name="background_dialer_white">#ff000000</color>    <!--OG:#ffffffff-->
@@ -26,6 +30,7 @@
     <color name="incall_background_gradient_middle">#99000000</color>   <!--OG:#e91141bb-->
     <color name="incall_background_gradient_top">#99000000</color>   <!--OG:#e91141bb-->
     <color name="incall_background_multiwindow">#99000000</color>   <!--OG:#e91141bb-->
+    <color name="incall_dialpad_background">#ff000000</color>   <!--OG:#ffffffff-->
     <color name="searchbox_background_color">#ff000000</color>    <!--OG:#ffffffff-->
     <color name="searchbox_hint_text_color">#ffffffff</color>    <!--OG:#ff737373-->
     <color name="setting_background_color">#ff000000</color>    <!--OG:#ffffffff-->
