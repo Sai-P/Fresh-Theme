@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--New-->
+    <color name="bb_inActiveBottomBarItemColor">#ffb2b2b2</color>   <!--OG:#ff747474-->
+    <color name="bottombar_bar_background">#ff000000</color>   <!--OG:@android:color/white-->
+    <color name="bottombar_icon_text_selected">#ffffffff</color>   <!--OG:@android:color/black-->
+    <color name="colorPrimary">#ff000000</color>   <!--OG:#ffffffff-->
+    <color name="colorPrimaryDark">#ff000000</color>   <!--OG:#fff4f4f4-->
+    <color name="primary_material_light">#ff000000</color>   <!--OG:@color/material_grey_100-->
+
 	<!--BG-->
     <color name="about_libraries_card">#ff000000</color>   <!--OG:#fffafafa-->
     <color name="about_libraries_special_button_openSource">#ffffffff</color>   <!--OG:#ff212121-->
@@ -55,4 +64,5 @@
     <color name="about_libraries_dividerLight_openSource">#00000000</color>   <!--OG:#ffdadada-->
     <color name="md_light_dividers">#00000000</color>   <!--OG:#1f000000-->
     <color name="ripple_material_light">#33ffffff</color>   <!--OG:#1f000000-->
+    
 </resources>

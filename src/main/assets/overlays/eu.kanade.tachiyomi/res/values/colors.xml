@@ -3,10 +3,9 @@
     <color name="background_material_dark">#ff000000</color>
     <color name="background_floating_material_dark">#ff000000</color>
     <color name="cardview_dark_background">#ff000000</color>
-    <color name="colorAccentDark">#ff2979ff</color>
     <color name="colorPrimary">#ff000000</color>
     <color name="colorPrimaryDark">#ff000000</color>
     <color name="dialogDark">#ff000000</color>
     <color name="dividerDark">#00000000</color>
-    <color name="md_blue_grey_900">#ff1b1b21</color>
+    <color name="md_blue_grey_900">#ff000000</color>
 </resources>
