@@ -6,6 +6,7 @@
     <color name="faded_gray">#ff000000</color>   <!--OG:#ff141d26-->
     <!--Statusbar-->
     <color name="status_bar_color">#ff000000</color>   <!--OG:@color/app_background-->
+    <color name="status_bar_transluscent">#ff000000</color>
     <!--Actionbar-->
     <color name="toolbar_bg_color">#ff000000</color>
     <!--Toolbar Icons-->

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.apps.messaging.ui.conversationlist.ConversationListItemView android:background="@*android:color/transparent" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@*com.google.android.apps.messaging:dimen/conversation_list_item_view_min_height"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/com.google.android.apps.messaging">
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/com.google.android.apps.messaging">
     <include android:layout_width="fill_parent" android:layout_height="fill_parent" layout="@*com.google.android.apps.messaging:layout/conversation_list_cross_swipe_background" />
     <FrameLayout android:id="@*com.google.android.apps.messaging:id/swipeableContainer" android:layout_width="fill_parent" android:layout_height="wrap_content" android:importantForAccessibility="no">
         <LinearLayout android:orientation="horizontal" android:id="@*com.google.android.apps.messaging:id/swipeableContent" android:background="?android:selectableItemBackground" android:duplicateParentState="true" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@*com.google.android.apps.messaging:style/ConversationListItemViewPaddingStyle">
