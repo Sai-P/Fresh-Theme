@@ -5,6 +5,12 @@ import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
+tasks.whenTaskAdded { task ->
+    if (task.name.startsWith("lint")) {
+        task.enabled = false
+    }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
@@ -31,6 +37,11 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
 
+    android.applicationVariants.all { final variant ->
+        variant.outputs.all {
+            outputFileName = "fresh-theme-v${variant.versionCode}.apk"
+        }
+    }
     defaultConfig {
         // If you're planning to change up the package name, ensure you have read the readme
         // thoroughly!
@@ -76,9 +87,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.github.javiersantos:PiracyChecker:1.1'
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version") {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.github.javiersantos:PiracyChecker:1.1'
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version") {
         transitive = true
     }
 }
