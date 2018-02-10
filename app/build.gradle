@@ -39,7 +39,7 @@ android {
 
     android.applicationVariants.all { final variant ->
         variant.outputs.all {
-            outputFileName = "fresh_${variant.versionCode}.apk"
+            outputFileName = "fresh-theme-v${variant.versionCode}.apk"
         }
     }
     defaultConfig {
