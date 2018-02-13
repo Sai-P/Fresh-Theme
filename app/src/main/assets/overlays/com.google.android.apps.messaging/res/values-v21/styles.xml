@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Base.Widget.AppCompat.Light.ActionBar.TabView" parent="@*android:style/Widget.Material.ActionBar.TabView" />
     <style name="Base.Widget.AppCompat.Light.ActionBar.TabText" parent="@*android:style/Widget.Material.ActionBar.TabText" />
     <style name="Base.Widget.AppCompat.Light.ActionBar.TabText.Inverse" parent="@*android:style/Widget.Material.ActionBar.TabText" />
@@ -31,4 +32,12 @@
     <style name="BugleTheme.ArchivedConversationListActivity" parent="@*com.google.android.apps.messaging:style/BugleTheme">
         <item name="android:windowBackground">@*android:color/background_dark</item>
     </style>
+
+    <style name="Widget.Design.BottomSheet.Modal" parent="@*android:style/Widget">
+        <item name="android:background">@*android:color/background_floating_material_dark</item>
+        <item name="*com.google.android.apps.messaging:behavior_peekHeight">auto</item>
+        <item name="*com.google.android.apps.messaging:behavior_hideable">true</item>
+        <item name="*com.google.android.apps.messaging:behavior_skipCollapsed">false</item>
+    </style>
+	
 </resources>

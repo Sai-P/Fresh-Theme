@@ -22,7 +22,6 @@ import baka.sai.thema.Constants.SUBSTRATUM_FILTER_CHECK
 import baka.sai.thema.Constants.THEME_READY_GOOGLE_APPS
 import baka.sai.thema.Constants.THEME_READY_PACKAGES
 import baka.sai.thema.ThemeFunctions.SUBSTRATUM_PACKAGE_NAME
-import baka.sai.thema.ThemeFunctions.checkNetworkConnection
 import baka.sai.thema.ThemeFunctions.checkSubstratumIntegrity
 import baka.sai.thema.ThemeFunctions.getSelfSignature
 import baka.sai.thema.ThemeFunctions.getSelfVerifiedIntentResponse
@@ -47,7 +46,7 @@ class SubstratumLauncher : Activity() {
     private var piracyChecker: PiracyChecker? = null
 
     private fun calibrateSystem(certified: Boolean, modeLaunch: String?) {
-        if (getAPStatus() && !BuildConfig.DEBUG) {
+        if (!BuildConfig.DEBUG) {
             startAntiPiracyCheck(certified, modeLaunch)
         } else {
             quitSelf(certified, modeLaunch)
@@ -58,7 +57,7 @@ class SubstratumLauncher : Activity() {
         if (piracyChecker != null) {
             piracyChecker!!.start()
         } else {
-            if (getAPStatus() && getAPKSignatureProduction().isEmpty() && !BuildConfig.DEBUG) {
+            if (getAPKSignatureProduction().isEmpty() && !BuildConfig.DEBUG) {
                 Log.e(tag, PiracyCheckerUtils.getAPKSignature(this))
             }
 
@@ -131,7 +130,7 @@ class SubstratumLauncher : Activity() {
         var themePiracyCheck = false
         if (getBlacklistedApplications())
             themePiracyCheck = getSelfVerifiedPirateTools(applicationContext)
-        if (themePiracyCheck || (SUBSTRATUM_FILTER_CHECK && !certified)) {
+        if (themePiracyCheck or (SUBSTRATUM_FILTER_CHECK && !certified)) {
             Toast.makeText(this, R.string.unauthorized, Toast.LENGTH_LONG).show()
             finish()
             return false
@@ -143,17 +142,27 @@ class SubstratumLauncher : Activity() {
         returnIntent.putExtra("encryption_key", getDecryptionKey())
         returnIntent.putExtra("iv_encrypt_key", getIVKey())
 
+        val callingPackage = intent.getStringExtra("calling_package_name")
+        if (callingPackage == null) {
+            val parse = String.format(
+                    getString(R.string.outdated_substratum),
+                    getString(R.string.ThemeName),
+                    915)
+            Toast.makeText(this, parse, Toast.LENGTH_SHORT).show()
+            finish()
+            return false
+        }
+        if (!isCallingPackageAllowed(callingPackage)) {
+            return false
+        } else {
+            returnIntent.`package` = callingPackage
+        }
+
         if (intent.action == substratumIntentData) {
             setResult(getSelfVerifiedIntentResponse(applicationContext)!!, returnIntent)
         } else if (intent.action == getKeysIntent) {
-            val callingPackage = intent.getStringExtra("calling_package_name")
-            returnIntent.`package` = callingPackage
             returnIntent.action = receiveKeysIntent
-            if (callingPackage != null) {
-                if (isCallingPackageAllowed(callingPackage)) {
-                    sendBroadcast(returnIntent)
-                }
-            }
+            sendBroadcast(returnIntent)
         }
         finish()
         return true
@@ -165,11 +174,10 @@ class SubstratumLauncher : Activity() {
         val intent = intent
         val action = intent.action
         var verified = false
-        if (action == substratumIntentData) {
-            verified = if (allowThirdPartySubstratumBuilds()) {
-                true
-            } else {
-                checkSubstratumIntegrity(this)
+        if ((action == substratumIntentData) or (action == getKeysIntent)) {
+            verified = when {
+                allowThirdPartySubstratumBuilds() -> true
+                else -> checkSubstratumIntegrity(this)
             }
         } else {
             OTHER_THEME_SYSTEMS
@@ -191,10 +199,9 @@ class SubstratumLauncher : Activity() {
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         if (getInternetCheck()) {
             if (sharedPref.getInt("last_version", 0) == BuildConfig.VERSION_CODE) {
-                if (THEME_READY_GOOGLE_APPS) {
-                    detectThemeReady(certified, modeLaunch)
-                } else {
-                    calibrateSystem(certified, modeLaunch)
+                when {
+                    THEME_READY_GOOGLE_APPS -> detectThemeReady(certified, modeLaunch)
+                    else -> calibrateSystem(certified, modeLaunch)
                 }
             } else {
                 checkConnection(certified, modeLaunch)
@@ -206,20 +213,13 @@ class SubstratumLauncher : Activity() {
         }
     }
 
-    private fun checkConnection(certified: Boolean, modeLaunch: String?): Boolean {
-        val isConnected = checkNetworkConnection()
-        return if (!isConnected!!) {
-            Toast.makeText(this, R.string.toast_internet, Toast.LENGTH_LONG).show()
-            false
+    private fun checkConnection(certified: Boolean, modeLaunch: String?) {
+        val editor = getPreferences(Context.MODE_PRIVATE).edit()
+        editor.putInt("last_version", BuildConfig.VERSION_CODE).apply()
+        if (THEME_READY_GOOGLE_APPS) {
+            detectThemeReady(certified, modeLaunch)
         } else {
-            val editor = getPreferences(Context.MODE_PRIVATE).edit()
-            editor.putInt("last_version", BuildConfig.VERSION_CODE).apply()
-            if (THEME_READY_GOOGLE_APPS) {
-                detectThemeReady(certified, modeLaunch)
-            } else {
-                calibrateSystem(certified, modeLaunch)
-            }
-            true
+            calibrateSystem(certified, modeLaunch)
         }
     }
 
@@ -290,7 +290,6 @@ class SubstratumLauncher : Activity() {
         System.loadLibrary("LoadingProcess")
     }
 
-    private external fun getAPStatus(): Boolean
     private external fun getInternetCheck(): Boolean
     private external fun getGooglePlayRequirement(): Boolean
     private external fun getAmazonAppStoreRequirement(): Boolean
